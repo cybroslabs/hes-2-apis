@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v5.26.1
-// source: protobuf/pbdriver/pbdriver.proto
+// source: pbdriver.proto
 
 package pbdriver
 
@@ -175,7 +175,7 @@ var Driver_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "protobuf/pbdriver/pbdriver.proto",
+	Metadata: "pbdriver.proto",
 }
 
 const (
@@ -735,5 +735,5 @@ var DriverHost_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protobuf/pbdriver/pbdriver.proto",
+	Metadata: "pbdriver.proto",
 }

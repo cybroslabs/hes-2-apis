@@ -2,14 +2,16 @@
 // versions:
 // 	protoc-gen-go v1.34.1
 // 	protoc        v5.26.1
-// source: protobuf/pbdataproxy/pbdataproxy.proto
+// source: pbdataproxy.proto
 
 package pbdataproxy
 
 import (
+	pbdriver "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -33,7 +35,7 @@ type BulkJobEventData struct {
 func (x *BulkJobEventData) Reset() {
 	*x = BulkJobEventData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_pbdataproxy_pbdataproxy_proto_msgTypes[0]
+		mi := &file_pbdataproxy_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +48,7 @@ func (x *BulkJobEventData) String() string {
 func (*BulkJobEventData) ProtoMessage() {}
 
 func (x *BulkJobEventData) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_pbdataproxy_pbdataproxy_proto_msgTypes[0]
+	mi := &file_pbdataproxy_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +61,7 @@ func (x *BulkJobEventData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BulkJobEventData.ProtoReflect.Descriptor instead.
 func (*BulkJobEventData) Descriptor() ([]byte, []int) {
-	return file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescGZIP(), []int{0}
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *BulkJobEventData) GetJobId() []byte {
@@ -69,64 +71,625 @@ func (x *BulkJobEventData) GetJobId() []byte {
 	return nil
 }
 
-var File_protobuf_pbdataproxy_pbdataproxy_proto protoreflect.FileDescriptor
+// RestApi -> DataProxy
+type BulkJobQueueRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_protobuf_pbdataproxy_pbdataproxy_proto_rawDesc = []byte{
-	0x0a, 0x26, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x70, 0x62, 0x64, 0x61, 0x74,
-	0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f,
-	0x78, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61,
-	0x70, 0x72, 0x6f, 0x78, 0x79, 0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0x25, 0x0a, 0x10, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x45, 0x76, 0x65,
-	0x6e, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x11, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x01, 0x69, 0x32, 0x5f, 0x0a, 0x0d, 0x44, 0x61, 0x74,
-	0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x48, 0x6f, 0x73, 0x74, 0x12, 0x4e, 0x0a, 0x15, 0x4e, 0x6f,
-	0x74, 0x69, 0x66, 0x79, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x6e, 0x46, 0x69, 0x6e, 0x69, 0x73,
-	0x68, 0x65, 0x64, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78,
-	0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x61,
-	0x74, 0x61, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x42, 0x37, 0x5a, 0x35, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c,
-	0x61, 0x62, 0x73, 0x2f, 0x68, 0x65, 0x73, 0x2d, 0x31, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72,
-	0x6f, 0x78, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	Spec *BulkJobSpec `protobuf:"bytes,1,opt,name=spec,json=s,proto3" json:"spec,omitempty"` // The bulk-job spec.
+}
+
+func (x *BulkJobQueueRequest) Reset() {
+	*x = BulkJobQueueRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkJobQueueRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkJobQueueRequest) ProtoMessage() {}
+
+func (x *BulkJobQueueRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkJobQueueRequest.ProtoReflect.Descriptor instead.
+func (*BulkJobQueueRequest) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BulkJobQueueRequest) GetSpec() *BulkJobSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+type BulkJobSpec struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BulkId     string                `protobuf:"bytes,1,opt,name=bulk_id,json=i,proto3" json:"bulk_id,omitempty"`         // The bulk identifier.
+	Devices    []*BulkDevice         `protobuf:"bytes,2,rep,name=devices,json=d,proto3" json:"devices,omitempty"`         // The list of devices in the bulk.
+	Settings   *pbdriver.JobSettings `protobuf:"bytes,3,opt,name=settings,json=s,proto3" json:"settings,omitempty"`       // The bulk-shared job settings.
+	JobActions []*pbdriver.JobAction `protobuf:"bytes,4,rep,name=job_actions,json=a,proto3" json:"job_actions,omitempty"` // The list actions to be executed.
+}
+
+func (x *BulkJobSpec) Reset() {
+	*x = BulkJobSpec{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkJobSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkJobSpec) ProtoMessage() {}
+
+func (x *BulkJobSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkJobSpec.ProtoReflect.Descriptor instead.
+func (*BulkJobSpec) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BulkJobSpec) GetBulkId() string {
+	if x != nil {
+		return x.BulkId
+	}
+	return ""
+}
+
+func (x *BulkJobSpec) GetDevices() []*BulkDevice {
+	if x != nil {
+		return x.Devices
+	}
+	return nil
+}
+
+func (x *BulkJobSpec) GetSettings() *pbdriver.JobSettings {
+	if x != nil {
+		return x.Settings
+	}
+	return nil
+}
+
+func (x *BulkJobSpec) GetJobActions() []*pbdriver.JobAction {
+	if x != nil {
+		return x.JobActions
+	}
+	return nil
+}
+
+type BulkGetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Spec   *BulkJobSpec        `protobuf:"bytes,1,opt,name=spec,json=s,proto3" json:"spec,omitempty"`     // The bulk-job spec.
+	Status *pbdriver.JobStatus `protobuf:"bytes,2,opt,name=status,json=t,proto3" json:"status,omitempty"` // The bulk-job status/data.
+}
+
+func (x *BulkGetResponse) Reset() {
+	*x = BulkGetResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkGetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkGetResponse) ProtoMessage() {}
+
+func (x *BulkGetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkGetResponse.ProtoReflect.Descriptor instead.
+func (*BulkGetResponse) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *BulkGetResponse) GetSpec() *BulkJobSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *BulkGetResponse) GetStatus() *pbdriver.JobStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+// Sub-message representing a single device in a bulk.
+type BulkDevice struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DeviceId       string                   `protobuf:"bytes,1,opt,name=device_id,json=i,proto3" json:"device_id,omitempty"`             // The device (job) identifier.
+	ConnectionInfo *pbdriver.ConnectionInfo `protobuf:"bytes,2,opt,name=connection_info,json=c,proto3" json:"connection_info,omitempty"` // The conenction (device) parameters.
+}
+
+func (x *BulkDevice) Reset() {
+	*x = BulkDevice{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkDevice) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkDevice) ProtoMessage() {}
+
+func (x *BulkDevice) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkDevice.ProtoReflect.Descriptor instead.
+func (*BulkDevice) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *BulkDevice) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
+	}
+	return ""
+}
+
+func (x *BulkDevice) GetConnectionInfo() *pbdriver.ConnectionInfo {
+	if x != nil {
+		return x.ConnectionInfo
+	}
+	return nil
+}
+
+// RestApi -> DataProxy - the message holds data for bulk listing request.
+type BulkJobListReuqest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tfrom       *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=tfrom,json=tf,proto3" json:"tfrom,omitempty"`               // The time range filter - left limit. Optional.
+	Tto         *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=tto,json=tt,proto3" json:"tto,omitempty"`                   // The time range filter - right limit. Optional.
+	IncludeData bool                   `protobuf:"varint,3,opt,name=include_data,json=d,proto3" json:"include_data,omitempty"` // The result content filter - if true then data are included in the response.
+}
+
+func (x *BulkJobListReuqest) Reset() {
+	*x = BulkJobListReuqest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkJobListReuqest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkJobListReuqest) ProtoMessage() {}
+
+func (x *BulkJobListReuqest) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkJobListReuqest.ProtoReflect.Descriptor instead.
+func (*BulkJobListReuqest) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *BulkJobListReuqest) GetTfrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Tfrom
+	}
+	return nil
+}
+
+func (x *BulkJobListReuqest) GetTto() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Tto
+	}
+	return nil
+}
+
+func (x *BulkJobListReuqest) GetIncludeData() bool {
+	if x != nil {
+		return x.IncludeData
+	}
+	return false
+}
+
+// DataProxy -> RestApi - the message holds list of bulks.
+type BulkJobListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Bulks []*BulkGetResponse `protobuf:"bytes,1,rep,name=bulks,json=b,proto3" json:"bulks,omitempty"` // The list of bulk jobs related to the original request.
+}
+
+func (x *BulkJobListResponse) Reset() {
+	*x = BulkJobListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkJobListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkJobListResponse) ProtoMessage() {}
+
+func (x *BulkJobListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkJobListResponse.ProtoReflect.Descriptor instead.
+func (*BulkJobListResponse) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *BulkJobListResponse) GetBulks() []*BulkGetResponse {
+	if x != nil {
+		return x.Bulks
+	}
+	return nil
+}
+
+// RestApi -> DataProxt - the message holds single bulk request.
+type BulkJobGetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BulkId string `protobuf:"bytes,1,opt,name=bulk_id,json=i,proto3" json:"bulk_id,omitempty"` // The bulk identifier to be retrieved.
+}
+
+func (x *BulkJobGetRequest) Reset() {
+	*x = BulkJobGetRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pbdataproxy_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BulkJobGetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BulkJobGetRequest) ProtoMessage() {}
+
+func (x *BulkJobGetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pbdataproxy_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BulkJobGetRequest.ProtoReflect.Descriptor instead.
+func (*BulkJobGetRequest) Descriptor() ([]byte, []int) {
+	return file_pbdataproxy_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *BulkJobGetRequest) GetBulkId() string {
+	if x != nil {
+		return x.BulkId
+	}
+	return ""
+}
+
+var File_pbdataproxy_proto protoreflect.FileDescriptor
+
+var file_pbdataproxy_proto_rawDesc = []byte{
+	0x0a, 0x11, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79,
+	0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74,
+	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0e,
+	0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x25,
+	0x0a, 0x10, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x61,
+	0x74, 0x61, 0x12, 0x11, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0c, 0x52, 0x01, 0x69, 0x22, 0x40, 0x0a, 0x13, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62,
+	0x51, 0x75, 0x65, 0x75, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x29, 0x0a, 0x04,
+	0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x70, 0x62, 0x64,
+	0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62,
+	0x53, 0x70, 0x65, 0x63, 0x52, 0x01, 0x73, 0x22, 0xa7, 0x01, 0x0a, 0x0b, 0x42, 0x75, 0x6c, 0x6b,
+	0x4a, 0x6f, 0x62, 0x53, 0x70, 0x65, 0x63, 0x12, 0x12, 0x0a, 0x07, 0x62, 0x75, 0x6c, 0x6b, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x69, 0x12, 0x2b, 0x0a, 0x07, 0x64,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x70,
+	0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x01, 0x64, 0x12, 0x2a, 0x0a, 0x08, 0x73, 0x65, 0x74, 0x74,
+	0x69, 0x6e, 0x67, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x70, 0x62, 0x64,
+	0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
+	0x73, 0x52, 0x01, 0x73, 0x12, 0x2b, 0x0a, 0x0b, 0x6a, 0x6f, 0x62, 0x5f, 0x61, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x64, 0x72,
+	0x69, 0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x01,
+	0x61, 0x22, 0x64, 0x0a, 0x0f, 0x42, 0x75, 0x6c, 0x6b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x29, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x18, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79,
+	0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x53, 0x70, 0x65, 0x63, 0x52, 0x01, 0x73, 0x12,
+	0x26, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x13, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e, 0x4a, 0x6f, 0x62, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x52, 0x01, 0x74, 0x22, 0x58, 0x0a, 0x0a, 0x42, 0x75, 0x6c, 0x6b, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x12, 0x14, 0x0a, 0x09, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x69, 0x12, 0x34, 0x0a, 0x0f, 0x63,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x70, 0x62, 0x64, 0x72, 0x69, 0x76, 0x65, 0x72, 0x2e,
+	0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x01,
+	0x63, 0x22, 0x89, 0x01, 0x0a, 0x12, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x75, 0x71, 0x65, 0x73, 0x74, 0x12, 0x2d, 0x0a, 0x05, 0x74, 0x66, 0x72, 0x6f,
+	0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x52, 0x02, 0x74, 0x66, 0x12, 0x2b, 0x0a, 0x03, 0x74, 0x74, 0x6f, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x52, 0x02, 0x74, 0x74, 0x12, 0x17, 0x0a, 0x0c, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f,
+	0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x01, 0x64, 0x22, 0x45, 0x0a,
+	0x13, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x05, 0x62, 0x75, 0x6c, 0x6b, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78,
+	0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x52, 0x01, 0x62, 0x22, 0x27, 0x0a, 0x11, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x47,
+	0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x07, 0x62, 0x75, 0x6c,
+	0x6b, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x01, 0x69, 0x32, 0xc6, 0x02,
+	0x0a, 0x0d, 0x44, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x48, 0x6f, 0x73, 0x74, 0x12,
+	0x4e, 0x0a, 0x15, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x79, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x6e,
+	0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74,
+	0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x45, 0x76,
+	0x65, 0x6e, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x12,
+	0x45, 0x0a, 0x09, 0x51, 0x75, 0x65, 0x75, 0x65, 0x42, 0x75, 0x6c, 0x6b, 0x12, 0x20, 0x2e, 0x70,
+	0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a,
+	0x6f, 0x62, 0x51, 0x75, 0x65, 0x75, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x12, 0x55, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4a, 0x6f, 0x62,
+	0x73, 0x42, 0x75, 0x6c, 0x6b, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x64,
+	0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x75, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62,
+	0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f,
+	0x62, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a,
+	0x07, 0x47, 0x65, 0x74, 0x42, 0x75, 0x6c, 0x6b, 0x12, 0x1e, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74,
+	0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x4a, 0x6f, 0x62, 0x47, 0x65,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x62, 0x64, 0x61, 0x74,
+	0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x47, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x37, 0x5a, 0x35, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x79, 0x62, 0x72, 0x6f, 0x73, 0x6c, 0x61, 0x62, 0x73, 0x2f,
+	0x68, 0x65, 0x73, 0x2d, 0x32, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2f, 0x70, 0x62, 0x64, 0x61, 0x74, 0x61, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescOnce sync.Once
-	file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescData = file_protobuf_pbdataproxy_pbdataproxy_proto_rawDesc
+	file_pbdataproxy_proto_rawDescOnce sync.Once
+	file_pbdataproxy_proto_rawDescData = file_pbdataproxy_proto_rawDesc
 )
 
-func file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescGZIP() []byte {
-	file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescOnce.Do(func() {
-		file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescData)
+func file_pbdataproxy_proto_rawDescGZIP() []byte {
+	file_pbdataproxy_proto_rawDescOnce.Do(func() {
+		file_pbdataproxy_proto_rawDescData = protoimpl.X.CompressGZIP(file_pbdataproxy_proto_rawDescData)
 	})
-	return file_protobuf_pbdataproxy_pbdataproxy_proto_rawDescData
+	return file_pbdataproxy_proto_rawDescData
 }
 
-var file_protobuf_pbdataproxy_pbdataproxy_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_protobuf_pbdataproxy_pbdataproxy_proto_goTypes = []interface{}{
-	(*BulkJobEventData)(nil), // 0: pbdataproxy.BulkJobEventData
-	(*emptypb.Empty)(nil),    // 1: google.protobuf.Empty
+var file_pbdataproxy_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_pbdataproxy_proto_goTypes = []interface{}{
+	(*BulkJobEventData)(nil),        // 0: pbdataproxy.BulkJobEventData
+	(*BulkJobQueueRequest)(nil),     // 1: pbdataproxy.BulkJobQueueRequest
+	(*BulkJobSpec)(nil),             // 2: pbdataproxy.BulkJobSpec
+	(*BulkGetResponse)(nil),         // 3: pbdataproxy.BulkGetResponse
+	(*BulkDevice)(nil),              // 4: pbdataproxy.BulkDevice
+	(*BulkJobListReuqest)(nil),      // 5: pbdataproxy.BulkJobListReuqest
+	(*BulkJobListResponse)(nil),     // 6: pbdataproxy.BulkJobListResponse
+	(*BulkJobGetRequest)(nil),       // 7: pbdataproxy.BulkJobGetRequest
+	(*pbdriver.JobSettings)(nil),    // 8: pbdriver.JobSettings
+	(*pbdriver.JobAction)(nil),      // 9: pbdriver.JobAction
+	(*pbdriver.JobStatus)(nil),      // 10: pbdriver.JobStatus
+	(*pbdriver.ConnectionInfo)(nil), // 11: pbdriver.ConnectionInfo
+	(*timestamppb.Timestamp)(nil),   // 12: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),           // 13: google.protobuf.Empty
 }
-var file_protobuf_pbdataproxy_pbdataproxy_proto_depIdxs = []int32{
-	0, // 0: pbdataproxy.DataproxyHost.NotifyBulkJonFinished:input_type -> pbdataproxy.BulkJobEventData
-	1, // 1: pbdataproxy.DataproxyHost.NotifyBulkJonFinished:output_type -> google.protobuf.Empty
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+var file_pbdataproxy_proto_depIdxs = []int32{
+	2,  // 0: pbdataproxy.BulkJobQueueRequest.spec:type_name -> pbdataproxy.BulkJobSpec
+	4,  // 1: pbdataproxy.BulkJobSpec.devices:type_name -> pbdataproxy.BulkDevice
+	8,  // 2: pbdataproxy.BulkJobSpec.settings:type_name -> pbdriver.JobSettings
+	9,  // 3: pbdataproxy.BulkJobSpec.job_actions:type_name -> pbdriver.JobAction
+	2,  // 4: pbdataproxy.BulkGetResponse.spec:type_name -> pbdataproxy.BulkJobSpec
+	10, // 5: pbdataproxy.BulkGetResponse.status:type_name -> pbdriver.JobStatus
+	11, // 6: pbdataproxy.BulkDevice.connection_info:type_name -> pbdriver.ConnectionInfo
+	12, // 7: pbdataproxy.BulkJobListReuqest.tfrom:type_name -> google.protobuf.Timestamp
+	12, // 8: pbdataproxy.BulkJobListReuqest.tto:type_name -> google.protobuf.Timestamp
+	3,  // 9: pbdataproxy.BulkJobListResponse.bulks:type_name -> pbdataproxy.BulkGetResponse
+	0,  // 10: pbdataproxy.DataproxyHost.NotifyBulkJonFinished:input_type -> pbdataproxy.BulkJobEventData
+	1,  // 11: pbdataproxy.DataproxyHost.QueueBulk:input_type -> pbdataproxy.BulkJobQueueRequest
+	5,  // 12: pbdataproxy.DataproxyHost.GetJobsBulksList:input_type -> pbdataproxy.BulkJobListReuqest
+	7,  // 13: pbdataproxy.DataproxyHost.GetBulk:input_type -> pbdataproxy.BulkJobGetRequest
+	13, // 14: pbdataproxy.DataproxyHost.NotifyBulkJonFinished:output_type -> google.protobuf.Empty
+	13, // 15: pbdataproxy.DataproxyHost.QueueBulk:output_type -> google.protobuf.Empty
+	6,  // 16: pbdataproxy.DataproxyHost.GetJobsBulksList:output_type -> pbdataproxy.BulkJobListResponse
+	3,  // 17: pbdataproxy.DataproxyHost.GetBulk:output_type -> pbdataproxy.BulkGetResponse
+	14, // [14:18] is the sub-list for method output_type
+	10, // [10:14] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_pbdataproxy_pbdataproxy_proto_init() }
-func file_protobuf_pbdataproxy_pbdataproxy_proto_init() {
-	if File_protobuf_pbdataproxy_pbdataproxy_proto != nil {
+func init() { file_pbdataproxy_proto_init() }
+func file_pbdataproxy_proto_init() {
+	if File_pbdataproxy_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_pbdataproxy_pbdataproxy_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_pbdataproxy_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BulkJobEventData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkJobQueueRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkJobSpec); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkGetResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkDevice); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkJobListReuqest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkJobListResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pbdataproxy_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BulkJobGetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -142,18 +705,18 @@ func file_protobuf_pbdataproxy_pbdataproxy_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_pbdataproxy_pbdataproxy_proto_rawDesc,
+			RawDescriptor: file_pbdataproxy_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_protobuf_pbdataproxy_pbdataproxy_proto_goTypes,
-		DependencyIndexes: file_protobuf_pbdataproxy_pbdataproxy_proto_depIdxs,
-		MessageInfos:      file_protobuf_pbdataproxy_pbdataproxy_proto_msgTypes,
+		GoTypes:           file_pbdataproxy_proto_goTypes,
+		DependencyIndexes: file_pbdataproxy_proto_depIdxs,
+		MessageInfos:      file_pbdataproxy_proto_msgTypes,
 	}.Build()
-	File_protobuf_pbdataproxy_pbdataproxy_proto = out.File
-	file_protobuf_pbdataproxy_pbdataproxy_proto_rawDesc = nil
-	file_protobuf_pbdataproxy_pbdataproxy_proto_goTypes = nil
-	file_protobuf_pbdataproxy_pbdataproxy_proto_depIdxs = nil
+	File_pbdataproxy_proto = out.File
+	file_pbdataproxy_proto_rawDesc = nil
+	file_pbdataproxy_proto_goTypes = nil
+	file_pbdataproxy_proto_depIdxs = nil
 }
