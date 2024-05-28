@@ -12,7 +12,7 @@ service DataproxyService {
     // The method called by the Taskmaster to notify about finished job.
     rpc NotifyJobFinished(BulkJobEventData) returns (google.protobuf.Empty);
     // The method called by the RestApi to start a new bulk of jobs.
-    rpc CreateBulks(CreateBulksRequest) returns (google.protobuf.Empty);
+    rpc BatchCreateBulks(BatchCreateBulksRequest) returns (google.protobuf.Empty);
     // The method called by the RestApi to retrieve stored bulks.
     rpc GetBulks(GetBulksReuqest) returns (GetBulksResponse);
     // The method called by the RestApi to retrieve single bulk.
@@ -25,7 +25,7 @@ message BulkJobEventData {
 }
 
 // RestApi -> DataProxy
-message CreateBulksRequest {
+message BatchCreateBulksRequest {
     repeated BulkSpec spec = 1 [json_name="s"]; // The bulk-job spec.
 }
 
