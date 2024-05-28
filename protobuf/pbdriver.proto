@@ -1,5 +1,5 @@
 syntax = "proto3";
-package pbdriver;
+package io.clbs.openhes.pbdriver;
 
 option go_package = "github.com/cybroslabs/hes-2-apis/protobuf/pbdriver";
 
@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 // The driver service definition.
 // Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster. 
-service Driver {
+service DriverService {
     // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
     rpc StartJob(StartJobRequest) returns (stream ProgressUpdate);
     // The method called by the Taskmaster to cancel the job. The parameter contains the job identifier.
@@ -17,7 +17,7 @@ service Driver {
 
 // The Taskmaster service definition.
 // Those are the gRPC services that the Taskmaster provides for other components.
-service DriverHost {
+service TaskmasterService {
     // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
     rpc NegotiateStart(NegotiateRequest) returns (CommonResponse);
     // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
